@@ -127,6 +127,10 @@ app.include_router(hosted_router)
 app.include_router(admin_router)
 app.include_router(mobile_router)
 
+@app.get("/")
+def root():
+    return {"status": "LivreTV Clips API Online!", "docs": "/docs", "health": "ok"}
+
 @app.middleware("http")
 async def _inject_user_context(request, call_next):
     auth = request.headers.get("authorization") or ""
